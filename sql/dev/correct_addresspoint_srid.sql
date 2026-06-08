@@ -1,10 +1,13 @@
--- dev
-
 drop index A527_IX1;
-
-delete from user_sdo_geom_metadata where table_name = 'ADDRESSPOINT'
-
-INSERT INTO user_sdo_geom_metadata (table_name, column_name, diminfo, srid)
+delete from 
+    user_sdo_geom_metadata 
+where 
+    table_name = 'ADDRESSPOINT';
+INSERT INTO user_sdo_geom_metadata (
+    table_name
+   ,column_name
+   ,diminfo
+   ,srid)
 VALUES (
     'ADDRESSPOINT',
     'SHAPE',
@@ -14,12 +17,13 @@ VALUES (
     ),
     2263
 );
-
-update ADDRESSPOINT a 
-set a.shape.sdo_srid = 2263;
-
+update 
+    ADDRESSPOINT a 
+set 
+    a.shape.sdo_srid = 2263;
 commit;
-
-CREATE INDEX A527_IX1
-ON ADDRESSPOINT (shape)
+CREATE INDEX 
+    A527_IX1
+ON 
+    ADDRESSPOINT (shape)
 INDEXTYPE IS MDSYS.SPATIAL_INDEX;
